@@ -1,0 +1,35 @@
+.navbar {
+    .navbarWrapper {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        .navbarMainLinks {
+            margin-left: auto;
+        }
+        .navbarControls {
+            border-left: 1px solid #333333;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #000000;
+            margin-right: 10px;
+            font-weight: 700;
+            transition: .2s linear;
+            @media screen and (min-width: 1000px) {
+                &:hover {
+                    color: #ffa200;
+                }
+            }
+        }
+    }
+    .mainLogo {
+        font-size: 30px;
+        font-weight: 700;
+        background: linear-gradient(to top right, rgb(0, 0, 0), rgb(22, 20, 2), rgb(45, 40, 5), rgb(67, 60, 7), rgb(90, 80, 10), rgb(112, 100, 12), rgb(135, 121, 15), rgb(157, 141, 17), rgb(180, 161, 20), rgb(202, 181, 22), rgb(225, 201, 25), rgb(247, 221, 27));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: .2s linear;
+    }
+}

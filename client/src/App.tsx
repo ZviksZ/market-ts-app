@@ -1,11 +1,21 @@
 import React from 'react';
+import {useRoutes} from "./routes";
 
-function App() {
-  return (
-    <div className="App">
+const App = () => {
 
-    </div>
-  );
+    const routes = useRoutes(true)
+
+    /*if (!ready) {
+        return <Loader/>
+    }*/
+
+    return (
+        <>
+            {routes}
+        </>
+    )
 }
 
-export default App;
+
+
+export default App

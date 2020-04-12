@@ -5,7 +5,9 @@ const schema = new Schema({
    userEmail: {type: String, required: true, unique: true},
    password: {type: String, required: true},
    userType: {type: String, required: true},
-   avatar: {type: String}
+   avatar: {type: String},
+  /* wishList: [{type: Types.ObjectId, ref: 'WishList'}],
+   buyList: [{type: Types.ObjectId, ref: 'BuyList'}]*/
 
    /*купленные товары, избранное, */
 
