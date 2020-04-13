@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
+    "@types/yup": "^0.26.35",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "axios": "^0.19.2",
@@ -46,6 +47,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
+    "react-awesome-slider": "^4.1.0",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.3.1",

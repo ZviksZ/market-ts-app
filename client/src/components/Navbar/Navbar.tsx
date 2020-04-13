@@ -14,14 +14,20 @@ const Navbar = () => {
                         MarketShop
                     </NavLink>
                     <div className={s.navbarMainLinks}>
-                        <NavLink to='/store'>Список товаров</NavLink>
+                        <NavLink to='/store'>Каталог товаров</NavLink>
+                        <NavLink to='/sign'>Регистрация/вход</NavLink>
                     </div>
 
 
                     <div className={s.navbarSearch}>Поиск</div>
 
                     <div className={s.navbarControls}>
-                        <NavLink to='/store' className={s.wishlist}>Список желаний</NavLink>
+                        <NavLink to='/store' className={s.wishlist}>
+                            Список желаний
+                            <ul>
+                                <li>hello</li>
+                            </ul>
+                        </NavLink>
                         <NavLink to='/store' className={s.basket}>Корзина</NavLink>
                         <NavLink to='/store' className={s.account}>Аккаунт</NavLink>
                     </div>

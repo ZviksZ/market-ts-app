@@ -2,10 +2,13 @@ const {Schema, model, Types} = require('mongoose')
 
 const schema = new Schema({
    userName: {type: String, required: true, unique: true},
+   name: {type: String, required: true},
+   surname: {type: String, required: true},
    userEmail: {type: String, required: true, unique: true},
    password: {type: String, required: true},
    userType: {type: String, required: true},
    avatar: {type: String},
+
   /* wishList: [{type: Types.ObjectId, ref: 'WishList'}],
    buyList: [{type: Types.ObjectId, ref: 'BuyList'}]*/
 
