@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
+const cors = require('cors');
 
 const PORT = process.env.PORT || '8888';
 
@@ -8,9 +9,9 @@ const app = express()
 const server = http.createServer(app);
 
 app.use(express.json({extended: true}))
-
-/*app.use('/api/auth', require('./routes/auth.routes.js'))
-app.use('/api/todo', require('./routes/todo.routes.js'))
+app.use(cors());
+app.use('/api/auth', require('./routes/auth.routes.js'))
+/*app.use('/api/todo', require('./routes/todo.routes.js'))
 app.use('/api/video', require('./routes/video.routes.js'))
 app.use('/api/english', require('./routes/english.routes.js'))
 app.use('/api/project', require('./routes/project.routes.js'))
