@@ -2,7 +2,8 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import * as yup from "yup";
 import s from './RegisterForm.module.scss'
-import {authAPI} from '../../api/api';
+import {useDispatch} from "react-redux";
+import {registerUser} from '../../redux/authReducer';
 
 const SignupSchema = yup.object().shape({
     userName: yup.string().required('Обязательное поле'),
@@ -20,13 +21,14 @@ interface RegisterFormProps {
     password?: string;
 }
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({
-                                                              userName = "",
+export const RegisterForm: React.FC<RegisterFormProps> = ({userName = "",
                                                               userEmail = "",
                                                               name = "",
                                                               surname = "",
                                                               password = ""
                                                           }) => {
+    const dispatch = useDispatch()
+
     const {register, handleSubmit, errors} = useForm({
         validationSchema: SignupSchema,
         defaultValues: {
@@ -41,7 +43,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
     const onSubmit = async (data: any) => {
         const {userName,name,surname, userEmail,password} = data;
 
-        await authAPI.register(userName,name,surname, userEmail,password, '', 'User' )
+        dispatch(registerUser(userName,name,surname, userEmail,password, '', 'User' ))
     };
 
     return (

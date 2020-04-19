@@ -1,5 +1,5 @@
 import {setCookie, deleteCookie, getCookie} from "../utils/cookie";
-import {AppActions, AuthActionTypes, AuthInitialState, SetUserDataAction, SET_USER_DATA} from "../types/AuthTypes";
+import {AppActions, AuthActionTypes, AuthInitialState, SetUserDataAction, SET_USER_DATA, SET_AUTH, SetUserDataPayload, SetAuthAction} from "../types/AuthTypes";
 import {Dispatch} from "redux";
 import {AppState} from "./store";
 import {authAPI} from "../api/api";
@@ -12,7 +12,8 @@ const initialState: AuthInitialState = {
     userName: '',
     surname: '',
     name: '',
-    userType: ''
+    userType: '',
+    isAuth: false
 };
 
 const authReducer = (state = initialState, action: AuthActionTypes) => {
@@ -22,54 +23,57 @@ const authReducer = (state = initialState, action: AuthActionTypes) => {
                 ...state,
                 ...action.payload
             }
-        /*
-    case SET_MESSAGE:
-        return {
-            ...state,
-            message: action.message
-        }
-    case SET_ERROR:
-        return {
-            ...state,
-            error: action.error
-        }
-    case SET_READY:
-        return {
-            ...state,
-            ready: action.ready
-        }
-    case LOGOUT:
-        return {
-            ...state,
-            token: null,
-            userId: null
-        }*/
+        case SET_AUTH:
+            return {
+                ...state,
+                isAuth: action.isAuth
+            }
+        /*case SET_ERROR:
+            return {
+                ...state,
+                error: action.error
+            }
+        case SET_READY:
+            return {
+                ...state,
+                ready: action.ready
+            }
+        case LOGOUT:
+            return {
+                ...state,
+                token: null,
+                userId: null
+            }*/
         default:
             return state;
     }
 }
 
-const setUserData = (userEmail,token,userAvatar,userId,userName,surname,name,userType): SetUserDataAction => ({ type: SET_USER_DATA, payload: {
-        userEmail,
-        token,
-        userAvatar,
-        userId,
-        userName,
-        surname,
-        name,
-        userType
-    }})
-
+const setUserData = (payload: SetUserDataPayload): SetUserDataAction => ({type: SET_USER_DATA, payload: payload})
+const setAuthAction = (isAuth: boolean): SetAuthAction => ({type: SET_AUTH, isAuth})
 
 export const login = (login: string, password: string) => {
     return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
-        let response = await authAPI.login(login, password)
-        const {userEmail,token,userAvatar,userId,userName,surname,name,userType} = response
-        dispatch(setUserData(userEmail,token,userAvatar,userId,userName,surname,name,userType))
-        console.log(response)
+        try {
+            let response = await authAPI.login(login, password)
+            dispatch(setUserData(response))
+            dispatch(setAuthAction(true))
+        } catch (e) {
+
+        }
+
     };
 };
 
+export const registerUser = (userName: string, name: string, surname: string, userEmail: string, password: string, avatar: string = '', userType: string = 'User') => {
+    return async (dispatch: Dispatch<AppActions>, getState: () => AppState) => {
+        try {
+            await authAPI.register(userName, name, surname, userEmail, password, avatar, userType)
+        } catch (e) {
+
+        }
+    };
+};
 
 
 export default authReducer;

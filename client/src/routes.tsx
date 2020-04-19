@@ -5,7 +5,7 @@ import {BigBanner} from "./components/BigBanner/BigBanner";
 import {SignInUpPage} from "./pages/SignInUpPage";
 
 
-export const useRoutes = (isAuthenticated: boolean = false, isAdmin: boolean = false) => {
+export const useRoutes = (isAuthenticated: string | null = null, isAdmin: boolean = false) => {
     if (isAuthenticated) {
         if (isAdmin) {
             return (
@@ -35,7 +35,7 @@ export const useRoutes = (isAuthenticated: boolean = false, isAdmin: boolean = f
             <Navbar/>
             {/*<BigBanner imgUri={'https://www.lg.com/ru/images/MN/features/Monitor_Banner_Hero_2018-02_OBS_01-min.jpg'}/>*/}
             <Switch>
-                <Redirect to="/todo111"/>
+
             </Switch>
         </div>
     )

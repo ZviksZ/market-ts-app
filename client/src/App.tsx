@@ -1,14 +1,15 @@
 import React from 'react';
 import {useRoutes} from "./routes";
 import {useSelector} from 'react-redux';
+import {AppState} from './redux/store';
 
 const App = () => {
-    const {posts, loading} = useSelector(state => ({
-        posts: state.posts.fetchedPosts
+    const {userId} = useSelector((state: AppState) => ({
+        userId: state.auth.userId
     }))
 
 
-    const routes = useRoutes(true)
+    const routes = useRoutes(userId)
 
     /*if (!ready) {
         return <Loader/>
